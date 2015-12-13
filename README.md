@@ -12,11 +12,11 @@ Coordinate, linear, and area measure control for [Leaflet](http://leafletjs.com)
 
 ## Install Options
 
-- Clone.. `git clone https://github.com/ljagis/leaflet-measure.git`
+- Clone.. `git clone https://github.com/bekerov/leaflet-measure.git`
 
 - Install with [Bower](http://bower.io/).. `bower install leaflet-measure`
 
-- Install with [npm](https://www.npmjs.com/).. `npm install leaflet-measure`
+- Install with [npm](https://www.npmjs.com/).. `npm install leaflet-measure-locale`
 
 ## Use bundled `leaflet-measure.min.js` or `leaflet-measure.js`
 
@@ -44,7 +44,7 @@ Include the [Leaflet Source](http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js),
 
 ```javascript
 var L = require('leaflet');
-require('leaflet-measure');
+require('leaflet-measure-locale');
 
 // Start creating maps
 ```

@@ -1,5 +1,5 @@
 {
-  "name": "leaflet-measure",
+  "name": "leaflet-measure-locale",
   "version": "1.4.0",
   "description": "Coordinate, linear, and area measure tool for Leaflet maps",
   "main": "src/leaflet-measure.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/ljagis/leaflet-measure.git"
+    "url": "git://github.com/bekerov/leaflet-measure.git"
   },
   "keywords": [
     "leaflet",
@@ -21,7 +21,8 @@
     "length",
     "area",
     "polygon",
-    "path"
+    "path",
+    "locale"
   ],
   "author": "Brandon Copeland <br@ndoncopeland.com>",
   "license": "MIT",
