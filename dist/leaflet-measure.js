@@ -6329,6 +6329,39 @@ module.exports = {
   'sqmiles': 'Millas cuadradas'
 };
 },{}],27:[function(require,module,exports){
+// ru.js
+// Translations
+
+module.exports = {
+  'measure': 'Измерение',
+  'measureDistancesAndAreas': 'Измерение расстояний и площади',
+  'createNewMeasurement': 'Создать новое измерение',
+  'startCreating': 'Для начала измерения добавьте точку на карту',
+  'finishMeasurement': 'Закончить измерение',
+  'lastPoint': 'Последняя точка',
+  'area': 'Область',
+  'perimeter': 'Периметр',
+  'pointLocation': 'Местоположение точки',
+  'areaMeasurement': 'Измерение области',
+  'linearMeasurement': 'Линейное измерение',
+  'pathDistance': 'Расстояние',
+  'centerOnArea': 'Сфокусироваться на данной области',
+  'centerOnLine': 'Сфокусироваться на данной линии',
+  'centerOnLocation': 'Сфокусироваться на данной местности',
+  'cancel': 'Отменить',
+  'delete': 'Удалить',
+  'acres': 'акры',
+  'feet': 'фут',
+  'kilometers': 'км',
+  'hectares': 'гк',
+  'meters': 'м',
+  'miles': 'миль',
+  'sqfeet': 'футов²',
+  'sqmeters': 'м²',
+  'sqmiles': 'миль²'
+};
+
+},{}],28:[function(require,module,exports){
 (function (global){
 // leaflet-measure.js
 
@@ -6344,16 +6377,17 @@ var $ = dom.$;
 var Symbology = require('./mapsymbology');
 
 
-var controlTemplate = _.template("<a class=\"<%= model.className %>-toggle js-toggle\" href=\"#\" title=\"<%= i18n.__('measureDistancesAndAreas') %>\"><%= i18n.__(\"measure\") %></a>\n<div class=\"<%= model.className %>-interaction js-interaction\">\n  <div class=\"js-startprompt startprompt\">\n    <h3><%= i18n.__(\"measureDistancesAndAreas\") %></h3>\n    <ul class=\"tasks\">\n      <a href=\"#\" class=\"js-start start\"><%= i18n.__(\"createNewMeasurement\") %></a>\n    </ul>\n  </div>\n  <div class=\"js-measuringprompt\">\n    <h3><%= i18n.__(\"measureDistancesAndAreas\") %></h3>\n    <p class=\"js-starthelp\"><%= i18n.__(\"startCreating\") %></h3>\n    <div class=\"js-results results\"></div>\n    <ul class=\"js-measuretasks tasks\">\n      <li><a href=\"#\" class=\"js-cancel cancel\"><%= i18n.__(\"cancel\") %></a></li>\n      <li><a href=\"#\" class=\"js-finish finish\"><%= i18n.__(\"finishMeasurement\") %></a></li>\n    </ul>\n  </div>\n</div>");
-var resultsTemplate = _.template("<div class=\"group\">\n<p class=\"lastpoint heading\"><%= i18n.__(\"lastPoint\") %></p>\n<p><%= model.lastCoord.dms.y %> <span class=\"coorddivider\">/</span> <%= model.lastCoord.dms.x %></p>\n<p><%= humanize.numberFormat(model.lastCoord.dd.y, 6) %> <span class=\"coorddivider\">/</span> <%= humanize.numberFormat(model.lastCoord.dd.x, 6) %></p>\n</div>\n<% if (model.pointCount > 1) { %>\n<div class=\"group\">\n<p><span class=\"heading\"><%= i18n.__(\"pathDistance\") %></span> <%= model.lengthDisplay %></p>\n</div>\n<% } %>\n<% if (model.pointCount > 2) { %>\n<div class=\"group\">\n<p><span class=\"heading\"><%= i18n.__(\"area\") %></span> <%= model.areaDisplay %></p>\n</div>\n<% } %>");
-var pointPopupTemplate = _.template("<h3><%= i18n.__(\"pointLocation\") %></h3>\n<p><%= model.lastCoord.dms.y %> <span class=\"coorddivider\">/</span> <%= model.lastCoord.dms.x %></p>\n<p><%= humanize.numberFormat(model.lastCoord.dd.y, 6) %> <span class=\"coorddivider\">/</span> <%= humanize.numberFormat(model.lastCoord.dd.x, 6) %></p>\n<ul class=\"tasks\">\n  <li><a href=\"#\" class=\"js-zoomto zoomto\"><%= i18n.__(\"centerOnLocation\") %></a></li>\n  <li><a href=\"#\" class=\"js-deletemarkup deletemarkup\"><%= i18n.__(\"delete\") %></a></li>\n</ul>");
-var linePopupTemplate = _.template("<h3><%= i18n.__(\"linearMeasurement\") %></h3>\n<p><%= model.lengthDisplay %></p>\n<ul class=\"tasks\">\n  <li><a href=\"#\" class=\"js-zoomto zoomto\"><%= i18n.__(\"centerOnLine\") %></a></li>\n  <li><a href=\"#\" class=\"js-deletemarkup deletemarkup\"><%= i18n.__(\"delete\") %></a></li>\n</ul>");
-var areaPopupTemplate = _.template("<h3><%= i18n.__(\"areaMeasurement\") %></h3>\n<p><%= model.areaDisplay %></p>\n<p><%= model.lengthDisplay %> <%= i18n.__(\"perimeter\") %></p>\n<ul class=\"tasks\">\n  <li><a href=\"#\" class=\"js-zoomto zoomto\"><%= i18n.__(\"centerOnArea\") %></a></li>\n  <li><a href=\"#\" class=\"js-deletemarkup deletemarkup\"><%= i18n.__(\"delete\") %></a></li>\n</ul>");
+var controlTemplate = _.template("<a class=\"<%= model.className %>-toggle js-toggle\" href=\"#\" title=\"<%= i18n.__('measureDistancesAndAreas') %>\"><%= i18n.__(\"measure\") %></a>\r\n<div class=\"<%= model.className %>-interaction js-interaction\">\r\n  <div class=\"js-startprompt startprompt\">\r\n    <h3><%= i18n.__(\"measureDistancesAndAreas\") %></h3>\r\n    <ul class=\"tasks\">\r\n      <a href=\"#\" class=\"js-start start\"><%= i18n.__(\"createNewMeasurement\") %></a>\r\n    </ul>\r\n  </div>\r\n  <div class=\"js-measuringprompt\">\r\n    <h3><%= i18n.__(\"measureDistancesAndAreas\") %></h3>\r\n    <p class=\"js-starthelp\"><%= i18n.__(\"startCreating\") %></h3>\r\n    <div class=\"js-results results\"></div>\r\n    <ul class=\"js-measuretasks tasks\">\r\n      <li><a href=\"#\" class=\"js-cancel cancel\"><%= i18n.__(\"cancel\") %></a></li>\r\n      <li><a href=\"#\" class=\"js-finish finish\"><%= i18n.__(\"finishMeasurement\") %></a></li>\r\n    </ul>\r\n  </div>\r\n</div>");
+var resultsTemplate = _.template("<div class=\"group\">\r\n<p class=\"lastpoint heading\"><%= i18n.__(\"lastPoint\") %></p>\r\n<p><%= model.lastCoord.dms.y %> <span class=\"coorddivider\">/</span> <%= model.lastCoord.dms.x %></p>\r\n<p><%= humanize.numberFormat(model.lastCoord.dd.y, 6) %> <span class=\"coorddivider\">/</span> <%= humanize.numberFormat(model.lastCoord.dd.x, 6) %></p>\r\n</div>\r\n<% if (model.pointCount > 1) { %>\r\n<div class=\"group\">\r\n<p><span class=\"heading\"><%= i18n.__(\"pathDistance\") %></span> <%= model.lengthDisplay %></p>\r\n</div>\r\n<% } %>\r\n<% if (model.pointCount > 2) { %>\r\n<div class=\"group\">\r\n<p><span class=\"heading\"><%= i18n.__(\"area\") %></span> <%= model.areaDisplay %></p>\r\n</div>\r\n<% } %>");
+var pointPopupTemplate = _.template("<h3><%= i18n.__(\"pointLocation\") %></h3>\r\n<p><%= model.lastCoord.dms.y %> <span class=\"coorddivider\">/</span> <%= model.lastCoord.dms.x %></p>\r\n<p><%= humanize.numberFormat(model.lastCoord.dd.y, 6) %> <span class=\"coorddivider\">/</span> <%= humanize.numberFormat(model.lastCoord.dd.x, 6) %></p>\r\n<ul class=\"tasks\">\r\n  <li><a href=\"#\" class=\"js-zoomto zoomto\"><%= i18n.__(\"centerOnLocation\") %></a></li>\r\n  <li><a href=\"#\" class=\"js-deletemarkup deletemarkup\"><%= i18n.__(\"delete\") %></a></li>\r\n</ul>");
+var linePopupTemplate = _.template("<h3><%= i18n.__(\"linearMeasurement\") %></h3>\r\n<p><%= model.lengthDisplay %></p>\r\n<ul class=\"tasks\">\r\n  <li><a href=\"#\" class=\"js-zoomto zoomto\"><%= i18n.__(\"centerOnLine\") %></a></li>\r\n  <li><a href=\"#\" class=\"js-deletemarkup deletemarkup\"><%= i18n.__(\"delete\") %></a></li>\r\n</ul>");
+var areaPopupTemplate = _.template("<h3><%= i18n.__(\"areaMeasurement\") %></h3>\r\n<p><%= model.areaDisplay %></p>\r\n<p><%= model.lengthDisplay %> <%= i18n.__(\"perimeter\") %></p>\r\n<ul class=\"tasks\">\r\n  <li><a href=\"#\" class=\"js-zoomto zoomto\"><%= i18n.__(\"centerOnArea\") %></a></li>\r\n  <li><a href=\"#\" class=\"js-deletemarkup deletemarkup\"><%= i18n.__(\"delete\") %></a></li>\r\n</ul>");
 
 var i18n = new (require('i18n-2'))({
   locales: {
     'en': require('./i18n/en'),
-    'es': require('./i18n/es')
+    'es': require('./i18n/es'),
+    'ru': require('./i18n/ru')
   }
 });
 
@@ -6733,7 +6767,7 @@ L.control.measure = function (options) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./calc":23,"./dom":24,"./i18n/en":25,"./i18n/es":26,"./mapsymbology":28,"./units":29,"humanize":18,"i18n-2":20,"underscore":22}],28:[function(require,module,exports){
+},{"./calc":23,"./dom":24,"./i18n/en":25,"./i18n/es":26,"./i18n/ru":27,"./mapsymbology":29,"./units":30,"humanize":18,"i18n-2":20,"underscore":22}],29:[function(require,module,exports){
 // mapsymbology.js
 
 var _ = require('underscore');
@@ -6834,7 +6868,7 @@ _.extend(Symbology.prototype, {
 });
 
 module.exports = Symbology;
-},{"color":1,"underscore":22}],29:[function(require,module,exports){
+},{"color":1,"underscore":22}],30:[function(require,module,exports){
 // units.js
 // Unit configurations
 // Factor is with respect to meters/sqmeters
@@ -6886,4 +6920,4 @@ module.exports = {
     decimals: 2
   }
 };
-},{}]},{},[27]);
+},{}]},{},[28]);
