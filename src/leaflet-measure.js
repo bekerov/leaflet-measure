@@ -153,9 +153,14 @@ L.Control.Measure = L.Control.extend({
 
     L.DomEvent.on(this._container, 'mouseenter', this._handleMapMouseOut, this);
 
-    this._map.on('mousemove', this._handleMeasureMove, this);
-    this._map.on('dblclick', this._handleMeasureDoubleClick, this);
-    this._map.on('click', this._handleMeasureClick, this);
+    if (!this._measureCollector) {
+      // polygon to cover all other layers and collection measure move and click events
+      this._measureCollector = L.polygon([[90, -180], [90, 180], [-90, 180], [-90, -180]], this._symbols.getSymbol('measureCollector')).addTo(this._layer);
+      this._measureCollector.on('mousemove', this._handleMeasureMove, this);
+      this._measureCollector.on('dblclick', this._handleMeasureDoubleClick, this);
+      this._measureCollector.on('click', this._handleMeasureClick, this);
+    }
+    this._measureCollector.bringToFront();
 
     this._measureVertexes = L.featureGroup().addTo(this._layer);
 
@@ -172,9 +177,9 @@ L.Control.Measure = L.Control.extend({
 
     this._clearMeasure();
 
-    this._map.off('mousemove', this._handleMeasureMove, this);
-    this._map.off('dblclick', this._handleMeasureDoubleClick, this);
-    this._map.off('click', this._handleMeasureClick, this);
+    this._measureCollector.off();
+    this._layer.removeLayer(this._measureCollector);
+    this._measureCollector = null;
 
     this._layer.removeLayer(this._measureVertexes);
     this._measureVertexes = null;
@@ -321,6 +326,8 @@ L.Control.Measure = L.Control.extend({
   _handleMeasureClick: function (evt) {
     var latlng = evt.latlng, lastClick = _.last(this._latlngs), vertexSymbol = this._symbols.getSymbol('measureVertex');
 
+	this._map.closePopup(); // open popups aren't closed on click. may be bug. close popup manually just in case.
+	
     if (!lastClick || !latlng.equals(lastClick)) { // skip if same point as last click, happens on `dblclick`
       this._latlngs.push(latlng);
       this._addMeasureArea(this._latlngs);

@@ -20,6 +20,12 @@ _.extend(Symbology.prototype, {
   },
   getSymbol: function (name) {
     var symbols = {
+      measureCollector: {
+        clickable: true,
+        stroke: false,
+        fillOpacity: 0.0,
+        className: 'layer-measurecollector'
+      },
       measureDrag: {
         clickable: false,
         radius: 4,
